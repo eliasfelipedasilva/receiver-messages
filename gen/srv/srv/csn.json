@@ -105,7 +105,8 @@
     "ReceiveMessageService": {
       "@source": "srv/ReceiveMessageService.cds",
       "kind": "service",
-      "@path": "/ReceiveMessageService"
+      "@path": "/ReceiveMessageService",
+      "@requires": "system-user"
     },
     "ReceiveMessageService.ReceivedMessages": {
       "kind": "entity",

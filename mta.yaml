@@ -29,6 +29,7 @@ modules:
    requires:
     # Resources extracted from CAP configuration
     - name: receiver-messages-db
+    - name: receiver-messages-uaa
    provides:
     - name: srv-api      # required by consumers of CAP services (e.g. approuter)
       properties:
@@ -43,8 +44,8 @@ modules:
      buildpack: nodejs_buildpack
    requires:
     # 'hana' and 'xsuaa' resources extracted from CAP configuration
-    - name: receiver-messages-db
-
+    - name: receiver-messages-db    
+    - name: receiver-messages-uaa
 
 resources:
  # services extracted from CAP configuration
@@ -60,3 +61,13 @@ resources:
      hdi-service-name: ${service-name}
 
 
+# ------------------------------------------------------------
+ - name: receiver-messages-uaa
+# ------------------------------------------------------------
+   type: org.cloudfoundry.managed-service
+   parameters:
+     service: xsuaa
+     service-plan: application  
+     config:
+       xsappname: receiver-messages-${space}    #  name + space dependency
+       tenant-mode: dedicated
