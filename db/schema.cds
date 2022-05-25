@@ -18,9 +18,18 @@ type Pais : String enum {
 }
 
 entity ReceivedMessages: cuid, managed {
-    key pais            : Pais;
+        pais            : Pais;
         tipoDocumento   : Documento;
         jsonRecebido    : LargeString;
+        mapeado         : Boolean;
+        status          : Status default 'A';
 
 }   
+
+type Status : String enum {
+    A;
+    P;
+    E;
+    S;
+}
 
